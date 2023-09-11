@@ -10,18 +10,27 @@ document.addEventListener('DOMContentLoaded', () => {
         dayElement.textContent = `Today is ${currentDay}`;
     }
 
-    // Function to update the current UTC time in milliseconds
-    function updateCurrentUTCTime() {
+    // Function to update the current time in milliseconds
+    function updateCurrentTime() {
         setInterval(() => {
             const currentUTCTime = Date.now();
             const timeElement = document.querySelector('[data-testid="currentUTCTime"]');
-            timeElement.textContent = `Current UTC Time (milliseconds): ${currentUTCTime}`;
-        }, 1000); // Update every second
+            timeElement.textContent = `Current Time (milliseconds): ${currentUTCTime}`;
+        }, 1); // Update every millisecond
     }
 
-    // 
+    // Add an animation to the box on hover
+    const animatedBox = document.querySelector('[data-testid="animatedBox"]');
+    animatedBox.addEventListener('mouseover', () => {
+        animatedBox.style.transform = 'scale(1.2)';
+        animatedBox.style.backgroundColor = getRandomColor();
+    });
+
+    animatedBox.addEventListener('mouseout', () => {
+        animatedBox.style.transform = 'scale(1)';
+    });
 
     // Call the functions to update content and add interactivity
     updateCurrentDayOfTheWeek();
-    updateCurrentUTCTime();
+    updateCurrentTime();
 });
